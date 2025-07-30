@@ -1,0 +1,33 @@
+// Define o cliente gerado pelo Prisma (usado pelo código JS/TS)
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Configuração da fonte de dados (banco MySQL)
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL") // Lê do arquivo .env
+}
+
+// Model que representa o admin (usuário autenticável)
+model Admin {
+  id        String   @id @default(uuid())      // ID único gerado como UUID
+  name      String                            // Nome do admin
+  email     String   @unique                  // Email único
+  password  String                            // Senha (hash)
+  createdAt DateTime @default(now())          // Timestamp de criação automático
+
+  users     User[]   @relation("AdminCreatesUsers") // Relação 1:N com usuários criados por ele
+}
+
+// Model que representa os usuários cadastrados pelo admin
+model User {
+  id          String   @id @default(uuid())   // ID único
+  name        String                         // Nome do usuário
+  email       String   @unique               // Email único
+  createdAt   DateTime @default(now())       // Timestamp de criação
+
+  createdById String                         // FK do admin criador
+  createdBy   Admin    @relation("AdminCreatesUsers", fields: [createdById], references: [id])
+  // Define a relação com o Admin que o criou
+}
