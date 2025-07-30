@@ -20,7 +20,7 @@ Backend da aplicação Projeto Teste, desenvolvida como teste técnico Fullstack
    ```bash
 ``bash
 git clone https://github.com/FelipeLopes069/Projeto-teste-Back-end.git
-cd skydash-backend
+cd Projeto-teste-Back-end
 
 
 
