@@ -27,7 +27,7 @@ cd Projeto-teste-Back-end
    	Instale as dependências:
     - npm install
 
-   Certifique-se de que o banco skydash já existe no MySQL. Depois rode:
+   certifique-se de que o banco skydash já existe no MySQL. Depois rode:
 
     - npx prisma migrate dev
 
